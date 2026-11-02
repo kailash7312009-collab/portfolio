@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kailash | Cybersecurity Portfolio</title>
+
+    <style>
+        /* GENERAL SETTINGS */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --background: #080812;
+            --card: #191932;
+            --text: #ffffff;
+            --accent: #a78bfa;
+            --pink: #ec4899;
+            --muted: #b8b4cc;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* NAVIGATION */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #080812;
+            border-bottom: 1px solid #292943;
+        }
+
+        nav {
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--pink);
+        }
+
+        /* HOME SECTION */
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 780px;
+        }
+
+        .eyebrow {
+            color: var(--pink);
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: clamp(45px, 8vw, 85px);
+            margin: 15px 0;
+        }
+
+        h1 span {
+            background: linear-gradient(
+                90deg,
+                var(--accent),
+                var(--pink)
+            );
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .role {
+            font-size: 25px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 650px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 22px;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn.primary {
+            background: linear-gradient(
+                90deg,
+                #7c3aed,
+                #db2777
+            );
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+        }
+
+        /* COMMON SECTIONS */
+
+        section {
+            padding: 75px 0;
+        }
+
+        .section-title {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .gradient {
+            background: linear-gradient(
+                90deg,
+                var(--accent),
+                var(--pink)
+            );
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .section-intro {
+            color: var(--muted);
+            max-width: 720px;
+            margin-bottom: 30px;
+        }
+
+        /* CARDS */
+
+        .grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid #292943;
+            border-radius: 14px;
+            padding: 25px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+        }
+
+        .card h3 {
+            color: #e9ddff;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--muted);
+        }
+
+        /* SKILLS */
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tag {
+            background: #211a39;
+            color: #ded2ff;
+            padding: 9px 16px;
+            border-radius: 30px;
+            border: 1px solid #45316b;
+        }
+
+        /* EDUCATION */
+
+        .timeline {
+            border-left: 2px solid #7045a8;
+            padding-left: 22px;
+        }
+
+        /* CONTACT */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .contact-item {
+            background: var(--card);
+            border: 1px solid #292943;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: var(--muted);
+            border-top: 1px solid #292943;
+        }
+
+        /* SCROLL ANIMATION */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.7s;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* MOBILE RESPONSIVE */
+
+        @media (max-width: 650px) {
+
+            nav {
+                flex-direction: column;
+                padding: 15px 0;
+                gap: 12px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .hero {
+                min-height: 70vh;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+
+    <header>
+        <nav class="container">
+
+            <a href="#home" class="logo">
+                cyberKailash<span>.</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <!-- HOME SECTION -->
+
+    <main>
+
+        <section class="hero container" id="home">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    WELCOME TO MY PORTFOLIO
+                </div>
+
+                <h1>
+                    Hi, I'm <span>Kailash</span>
+                </h1>
+
+                <div class="role">
+                    Cybersecurity Engineering Student
+                </div>
+
+                <p>
+                    I am a first-year engineering student interested
+                    in cybersecurity, computer networks, Linux and
+                    Python. I am building my skills through learning,
+                    practice and beginner-friendly projects.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="#projects" class="btn primary">
+                        Explore My Work
+                    </a>
+
+                    <a href="#contact" class="btn">
+                        Contact Me
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT SECTION -->
+
+        <section id="about">
+
+            <div class="container reveal">
+
+                <h2 class="section-title">
+                    About <span class="gradient">Me</span>
+                </h2>
+
+                <p class="section-intro">
+                    I am an enthusiastic learner starting my journey
+                    in cybersecurity. I enjoy understanding how
+                    computers, networks and applications work.
+
+                    My goal is to develop strong technical foundations,
+                    practise responsibly and keep improving step by step.
+                </p>
+
+                <div class="grid">
+
+                    <div class="card">
+                        <h3>My Interest</h3>
+                        <p>
+                            Cybersecurity, networking and programming.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3>My Approach</h3>
+                        <p>
+                            Learn fundamentals, practise safely
+                            and build projects.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3>My Goal</h3>
+                        <p>
+                            Become a skilled cybersecurity professional.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SKILLS SECTION -->
+
+        <section id="skills">
+
+            <div class="container reveal">
+
+                <h2 class="section-title">
+                    Skills & <span class="gradient">Learning</span>
+                </h2>
+
+                <p class="section-intro">
+                    Technologies and topics I am currently learning.
+                </p>
+
+                <div class="tag-list">
+
+                    <span class="tag">C Programming</span>
+                    <span class="tag">Python Fundamentals</span>
+                    <span class="tag">HTML & CSS</span>
+                    <span class="tag">Linux Fundamentals</span>
+                    <span class="tag">Computer Networking</span>
+                    <span class="tag">Cybersecurity Fundamentals</span>
+                    <span class="tag">Problem Solving</span>
+                    <span class="tag">Git & GitHub</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROJECTS SECTION -->
+
+        <section id="projects">
+
+            <div class="container reveal">
+
+                <h2 class="section-title">
+                    Projects & <span class="gradient">Practice</span>
+                </h2>
+
+                <p class="section-intro">
+                    Beginner projects and learning activities.
+                </p>
+
+                <div class="grid">
+
+                    <div class="card">
+
+                        <h3>Personal Portfolio Website</h3>
+
+                        <p>
+                            A responsive website built using HTML
+                            and CSS to introduce my skills and interests.
+                        </p>
+
+                    </div>
+
+                    <div class="card">
+
+                        <h3>Python Beginner Programs</h3>
+
+                        <p>
+                            Small Python exercises covering variables,
+                            conditions, loops and functions.
+                        </p>
+
+                    </div>
+
+                    <div class="card">
+
+                        <h3>Networking Notes</h3>
+
+                        <p>
+                            Beginner notes about IP addresses,
+                            DNS, HTTP, HTTPS and networking concepts.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EDUCATION SECTION -->
+
+        <section id="education">
+
+            <div class="container reveal">
+
+                <h2 class="section-title">
+                    My <span class="gradient">Education</span>
+                </h2>
+
+                <div class="timeline">
+
+                    <div class="card">
+
+                        <h3>
+                            Bachelor of Engineering –
+                            Cybersecurity Engineering
+                        </h3>
+
+                        <p>
+                            Sri Venkateswara College of Engineering
+                            and Technology, Thirupachur
+                        </p>
+
+                        <p>
+                            First-year student
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CAREER OBJECTIVE -->
+
+        <section id="objective">
+
+            <div class="container reveal">
+
+                <h2 class="section-title">
+                    Career <span class="gradient">Objective</span>
+                </h2>
+
+                <p class="section-intro">
+                    To build a strong foundation in cybersecurity
+                    and computer science, gain practical experience
+                    through ethical learning and contribute to
+                    creating safer digital systems.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT SECTION -->
+
+        <section id="contact">
+
+            <div class="container reveal">
+
+                <h2 class="section-title">
+                    Contact <span class="gradient">Me</span>
+                </h2>
+
+                <p class="section-intro">
+                    Feel free to connect with me about learning,
+                    collaboration and beginner-friendly tech projects.
+                </p>
+
+                <div class="contact-grid">
+
+                    <div class="contact-item">
+                        <strong>Email</strong>
+                        <a href="mailto:kailash7312009@gmail.com">
+                            kailash7312009@gmail.com
+                        </a>
+                    </div>
+
+                    <div class="contact-item">
+                        <strong>Phone</strong>
+                        <a href="tel:+919345680524">
+                            9345680524
+                        </a>
+                    </div>
+
+                    <div class="contact-item">
+                        <strong>GitHub</strong>
+                        <a href="https://github.com/kailash7312009"
+                           target="_blank">
+                            github.com/kailash7312009
+                        </a>
+                    </div>
+
+                    <div class="contact-item">
+                        <strong>LinkedIn</strong>
+                        <a href="https://www.linkedin.com/in/kailashm7/"
+                           target="_blank">
+                            linkedin.com/in/kailashm7
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="container">
+            © <span id="year"></span> Kailash.
+            Built with HTML, CSS & JavaScript.
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // Automatically update the year
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+
+        // Scroll reveal animation
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        }, {
+            threshold: 0.12
+        });
+
+
+        document.querySelectorAll(".reveal").forEach((element) => {
+
+            observer.observe(element);
+
+        });
+
+    </script>
+
+</body>
+</html>
